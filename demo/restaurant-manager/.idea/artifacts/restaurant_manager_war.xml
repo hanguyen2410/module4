@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="restaurant-manager:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>restaurant-manager</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="restaurant-manager-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="restaurant-manager:war exploded" />
+    </root>
+  </artifact>
+</component>
