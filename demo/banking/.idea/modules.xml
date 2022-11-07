@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/banking.iml" filepath="$PROJECT_DIR$/.idea/banking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c0622-spring-thymeleaf-banking/c0622-spring-thymeleaf-banking.iml" filepath="$PROJECT_DIR$/c0622-spring-thymeleaf-banking/c0622-spring-thymeleaf-banking.iml" />
+    </modules>
+  </component>
+</project>
