@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en" xmlns:th="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>Customer List</title>
@@ -59,77 +60,47 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-sm-flex justify-content-between align-items-center">
-                                    <h4 class="header-title mb-0">Bến Ngự Market</h4>
-                                    <select class="custome-select border-0 pr-3">
-                                        <option selected>Last 24 Hours</option>
-                                        <option value="0">27 October 2022</option>
-                                    </select>
+                                    <h4 class="header-title mb-0">Menu</h4>
                                 </div>
                                 <div class="market-status-table mt-4">
                                     <div class="table-responsive">
-                                        <table class="dbkit-table">
-                                            <tr class="heading-td">
-                                                <td class="mv-icon">Logo</td>
-                                                <td class="coin-name">Food Name</td>
-                                                <td class="buy">Buy</td>
-                                                <td class="sell">Sells</td>
-                                                <td class="trends">Trends</td>
-                                                <td class="attachments">Price</td>
-                                                <td class="stats-chart">Stats</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="mv-icon"><img src="/assets/images/icon/market-value/icon1.png" alt="icon">
-                                                </td>
-                                                <td class="coin-name">Cá</td>
-                                                <td class="buy">30% <img src="/assets/images/icon/market-value/triangle-down.png" alt="icon"></td>
-                                                <td class="sell">20% <img src="/assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="trends"><img src="/assets/images/icon/market-value/trends-up-icon.png" alt="icon"></td>
-                                                <td class="attachments">VNĐ 200.000</td>
-                                                <td class="stats-chart">
-                                                    <canvas id="mvaluechart"></canvas>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="mv-icon">
-                                                    <div class="mv-icon"><img src="/assets/images/icon/market-value/icon2.png" alt="icon"></div>
-                                                </td>
-                                                <td class="coin-name">Gà</td>
-                                                <td class="buy">30% <img src="/assets/images/icon/market-value/triangle-down.png" alt="icon"></td>
-                                                <td class="sell">20% <img src="/assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="trends"><img src="/assets/images/icon/market-value/trends-down-icon.png" alt="icon"></td>
-                                                <td class="attachments">VNĐ 300.000</td>
-                                                <td class="stats-chart">
-                                                    <canvas id="mvaluechart2"></canvas>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="mv-icon">
-                                                    <div class="mv-icon"><img src="/assets/images/icon/market-value/icon3.png" alt="icon"></div>
-                                                </td>
-                                                <td class="coin-name">Thịt Bò</td>
-                                                <td class="buy">30% <img src="/assets/images/icon/market-value/triangle-down.png" alt="icon"></td>
-                                                <td class="sell">20% <img src="/assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="trends"><img src="/assets/images/icon/market-value/trends-up-icon.png" alt="icon"></td>
-                                                <td class="attachments">VNĐ 250.000</td>
-                                                <td class="stats-chart">
-                                                    <canvas id="mvaluechart3"></canvas>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="mv-icon">
-                                                    <div class="mv-icon"><img src="/assets/images/icon/market-value/icon4.png" alt="icon"></div>
-                                                </td>
-                                                <td class="coin-name">Thịt Lợn</td>
-                                                <td class="buy">30% <img src="/assets/images/icon/market-value/triangle-down.png" alt="icon"></td>
-                                                <td class="sell">20% <img src="/assets/images/icon/market-value/triangle-up.png" alt="icon"></td>
-                                                <td class="trends"><img src="/assets/images/icon/market-value/trends-up-icon.png" alt="icon"></td>
-                                                <td class="attachments">VNĐ 300.000</td>
-                                                <td class="stats-chart">
-                                                    <canvas id="mvaluechart4"></canvas>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        <!-- table success start -->
+                                        <div class="market-status-table mt-4">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="single-table">
+                                                        <div class="table-responsive">
+                                                            <table class="table text-center">
+                                                                <thead class="text-uppercase bg-success">
+                                                                <tr class="heading-td">
+                                                                    <td class="mv-icon">#</td>
+                                                                    <td class="coin-name">Food Name</td>
+                                                                    <td class="buy">Quantity</td>
+                                                                    <td class="attachments">Price</td>
+                                                                    <td class="stats-chart">Description</td>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <th:block>
+                                                                    <tr th:each="item : ${productList}">
+                                                                        <td th:text="${item.id}"></td>
+                                                                        <td th:text="${item.nameProduct}"></td>
+                                                                        <td th:text="${item.quantity}"></td>
+                                                                        <td th:text="${item.price}"></td>
+                                                                        <td th:text="${item.descrip}"></td>
+                                                                    </tr>
+                                                                </th:block>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- table success end -->
                                     </div>
+
                                 </div>
                             </div>
                         </div>

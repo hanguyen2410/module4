@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View</title>
+
+    <th:block th:replace="/layout/head :: head" />
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>View City</h1>
+            </div>
+            <div class="col-sm-7">
+                <a href="/citys" class="btn btn-outline-light">
+                    <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                    <span>List of Cities</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <form id="frmUpdateCustomer" method="post" th:object="${city}">
+            <fieldset class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Tên Thành Phố</label>
+                    <input type="text" class="form-control" th:field="*{nameCity}" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Quốc Gia</label>
+                    <input type="text" class="form-control" th:field="*{nation}" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Diện Tích</label>
+                    <input type="number" class="form-control" th:field="*{area}" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Dân Số</label>
+                    <input type="number" class="form-control" th:field="*{population}" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">GDP</label>
+                    <input type="number" class="form-control" th:field="*{GDP}" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Giới Thiệu</label>
+                    <input type="text" class="form-control" th:field="*{description}" readonly>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+    <footer>
+        <div id="message-alert">
+            <th:block th:if="${error}">
+                <div class="alert-danger">
+                    <label class="error" th:text="${error}"></label>
+                </div>
+            </th:block>
+
+            <th:block th:if="${errors == true}">
+                <div class="alert-danger">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('City.*')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </th:block>
+
+            <th:block th:if="${success}">
+                <div class="alert-success message-success">
+                    <label th:text="${success}"></label>
+                </div>
+            </th:block>
+        </div>
+    </footer>
+    </div>
+
+</body>
+</html>

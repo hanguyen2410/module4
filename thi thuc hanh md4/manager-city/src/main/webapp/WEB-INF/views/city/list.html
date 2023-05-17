@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>City List</title>
+
+    <th:block th:replace="layout/head :: head" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="row">
+                <div class="col-sm-5">
+                    <h1>List of city</h1>
+                </div>
+                <div class="col-sm-7">
+                    <a href="/citys/create" class="btn btn-outline-light"><i class="fa fa-plus-square-o" aria-hidden="true"></i> <span>Add New City</span></a>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Thành Phố</th>
+                        <th>Quốc Gia</th>
+                        <th colspan="3">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="item : ${citys}">
+                        <tr>
+                            <td th:text="${item.id}"></td>
+                            <td th:text="${item.nameCity}"></td>
+                            <td th:text="${item.nation}"></td>
+                            <td>
+                                <a th:href="@{'/citys/update/'+${item.id}}">
+                                    <button class="btn btn-outline-secondary">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        Update
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="@{'/citys/view/'+${item.id}}">
+                                    <button class="btn btn-outline-success">
+                                        <i class="fa fa-list" aria-hidden="true"></i>
+                                        View
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="@{'/citys/delete/'+${item.id}}">
+                                    <button class="btn btn-outline-danger">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                        Delete
+                                    </button>
+                                </a>
+                            </td>
+
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+
+        <footer id="footer">
+            <th:block th:if="${success}">
+                <div class="alert-success message-success">
+                    <label th:text="${success}"></label>
+                </div>
+                <script th:inline="javascript">
+                    setTimeout(() => {
+                        document.getElementById("footer").innerHTML = "";
+                    }, 3000);
+                </script>
+            </th:block>
+        </footer>
+    </div>
+
+    <th:block th:replace="layout/script :: script" />
+
+</body>
+</html>

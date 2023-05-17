@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Transfer</title>
+
+  <th:block th:replace="/layout/head :: head" />
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="row">
+      <div class="col-sm-5">
+        <h1>Transfer</h1>
+      </div>
+      <div class="col-sm-7">
+        <a href="/customers" class="btn btn-outline-light">
+          <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+          <span>List of Customers</span>
+        </a>
+        <a href="/transfers" class="btn btn-outline-light"><i class="fa fa-history" aria-hidden="true"></i> <span>Transfer money Information</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="content">
+    <form id="frmCreateCustomer" method="post" th:object="${transfer}">
+      <fieldset class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Full name</label>
+          <input type="text" class="form-control" th:field="*{sender.fullName}" readonly>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Email</label>
+          <input type="text" class="form-control" th:field="*{sender.email}" readonly>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Phone</label>
+          <input type="tel" class="form-control" th:field="*{sender.phone}" readonly>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Balance</label>
+          <input type="text" class="form-control" th:field="*{sender.balance}" readonly>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Recipient</label>
+          <select class="form-control" th:field="*{recipient.id}" id="">
+            <th:block th:each="item : ${recipients}">
+              <option th:value="${item.id}" th:text="${'(' + item.id + ') - ' + item.fullName}"></option>
+            </th:block>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">TransferAmount</label>
+          <input type="text" class="form-control" th:field="*{transferAmount}">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Fees (%)</label>
+          <input type="text" class="form-control" name="fees" value="10" readonly>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Transaction Amount</label>
+          <input type="text" class="form-control" id="transactionAmount" name="transactionAmount" readonly>
+        </div>
+
+        <div class="col-md-12">
+          <button type="submit" id="btnCreateCustomer" class="btn btn-outline-primary">
+            <i class="fa fa-exchange" aria-hidden="true"></i>
+            Transfer
+          </button>
+        </div>
+      </fieldset>
+      </form>
+  </div>
+
+  <footer>
+    <th:block th:if="${error == true}">
+      <div id="message-alert">
+        <div class="alert-danger">
+          <label class="error" th:text="${message}"></label>
+        </div>
+      </div>
+    </th:block>
+    <th:block th:if="${success == true}">
+      <div id="message-success">
+        <div class="alert-success">
+          <label class="success">Chuyển Khoản thành công!!</label>
+        </div>
+      </div>
+    </th:block>
+
+    <th:block th:if="${errors} == true">
+      <div class="alert-danger">
+        <ul>
+          <li th:each="err : ${#fields.errors('transfer.*')}" th:text="${err}"></li>
+        </ul>
+      </div>
+    </th:block>
+  </footer>
+</div>
+<script>
+let transferAmountElem = document.getElementById("transferAmount");
+transferAmountElem.addEventListener("input", function () {
+let transferAmount = +transferAmountElem.value;
+let fees = 10;
+let feesAmount = transferAmount * fees / 100;
+let transactionAmount = transferAmount + feesAmount;
+document.getElementById("transactionAmount").value = transactionAmount;})
+</script>
+
+</body>
+</html>

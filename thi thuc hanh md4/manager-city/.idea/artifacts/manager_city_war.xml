@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="manager-city:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>manager-city</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="manager-city-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="manager-city:war exploded" />
+    </root>
+  </artifact>
+</component>

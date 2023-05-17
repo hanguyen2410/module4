@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create</title>
+
+    <th:block th:replace="/layout/head :: head" />
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>Create City</h1>
+            </div>
+            <div class="col-sm-7">
+                <a href="/citys" class="btn btn-outline-light">
+                    <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                    <span>List of Cities</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <form action="/citys/create" method="post" th:object="${city}">
+            <fieldset class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Tên Thành Phố</label>
+                    <input type="text" class="form-control" th:field="*{nameCity}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Quốc Gia</label>
+                    <input type="text" class="form-control" th:field="*{nation}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Diện Tích (KM)</label>
+                    <input type="number" class="form-control" th:field="*{area}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Dân Số</label>
+                    <input type="number" class="form-control" th:field="*{population}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">GDP (VNĐ)</label>
+                    <input type="number" class="form-control" th:field="*{GDP}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Giới Thiệu</label>
+                    <input type="text" class="form-control" th:field="*{description}">
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Create city
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <footer>
+        <div id="message-alert">
+            <th:block th:if="${error}">
+                <div class="alert-danger">
+                    <label class="error" th:text="${error}"></label>
+                </div>
+            </th:block>
+
+            <th:block th:if="${errors == true}">
+                <div class="alert-danger message-error">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('city.*')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </th:block>
+
+            <th:block th:if="${success}">
+                <div class="alert-success message-success">
+                    <label th:text="${success}"></label>
+                </div>
+            </th:block>
+        </div>
+    </footer>
+    </div>
+
+</body>
+</html>
